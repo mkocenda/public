@@ -1,0 +1,53 @@
+{block content}
+
+<!-- page content -->
+<div role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            {foreach $actions as $ctionKey=>$action}
+                                <div class="col-md-4 col-sm-4 col-xs-12 profile_details" style="min-width:500px;">
+                                    <div class="well profile_view" >
+                                        <div class="col-sm-12" >
+                                            <div class="left col-xs-7">
+                                                <a n:href="Actions:detail, $action->id"> <h2>Téma <strong> {$action->motto}</strong></h2></a>
+                                                <p>{$action->name}</p>
+                                                <p><i class="fa fa-calendar"></i> <b>{$action->starttime} - {$action->stoptime}</b></p>
+                                                <p>&nbsp;</p>
+                                                <ul class="list-unstyled">
+                                                    <li><i class="fa fa-building"></i> {$action->address} </li>
+                                                </ul>
+                                            </div>
+                                            <div class="right col-xs-5 text-center">
+                                                <img src="{$frontImages}/{$action->photo}" alt="" class="img-responsive">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 bottom text-center">
+                                            <div class="col-xs-12 col-sm-6 emphasis">
+                                                <p class="ratings">
+                                                    <a>{$action->stars}</a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star-half-o"></span></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/foreach}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<style>
+    .col-sm-12 { min-height: 170px;}
+</style>

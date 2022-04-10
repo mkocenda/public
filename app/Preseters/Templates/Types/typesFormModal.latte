@@ -1,0 +1,44 @@
+<div class="modal fade" id="typesFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"><h1 class="card-title pull-left">Typ akce</h1></div>
+                    <div class="col-md-4"><button type="button" class="close btn-close-modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form typesFormModal}
+                            {label name}
+                            {input name}
+                            {label color}
+                            {input color}
+                            <br>
+                            {input id}
+                            {input submit}
+                        {/form}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal{ float: right;
+        padding-top: 5px;}
+    .card-title{ padding-left: 10px;}
+</style>
+
+<script>
+    var $modal = $('#typesFormModal');
+    $modal.modal('show');
+    $('.btn-success .btn-close-modal').on('click', function () {
+        $modal.modal('hide');
+    });
+</script>

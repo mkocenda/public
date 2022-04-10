@@ -1,0 +1,53 @@
+<div class="modal fade" id="modifyProfile">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"><h1 class="card-title pull-left">Profil</h1></div>
+                    <div class="col-md-4"><button type="button" class="close btn-close-modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form modifyProfileForm}
+                            {label name}
+                            {input name}
+                            {label surname}
+                            {input surname}
+                            {label alias}
+                            {input alias}
+                            {label email}
+                            {input email}
+                            {label birthday}
+                            {input birthday}
+                            {label photo}
+                            {input photo}
+<br>
+                            {input userid}
+                            {input submit}
+                        {/form}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal{ float: right;
+                      padding-top: 5px;}
+    .card-title{ padding-left: 10px;}
+    .icon { font-size: 25px; padding: 10px;}
+</style>
+
+<script>
+    var $modal = $('#modifyProfile');
+    $modal.modal('show');
+    $('.btn-success .btn-close-modal').on('click', function () {
+        $modal.modal('hide');
+    });
+</script>

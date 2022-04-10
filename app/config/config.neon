@@ -1,0 +1,50 @@
+php:
+	date.timezone: Europe/Prague
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\*Presenter
+
+extensions:
+        translation: Kdyby\Translation\DI\TranslationExtension
+
+session:
+	expiration: 14 days
+
+services:
+	router: App\RouterFactory::createRouter
+#Actions
+	- App\ActionsModule\Model\ActionModel
+	- App\ActionsModule\Model\StuffModel
+	- App\ActionsModule\Model\ChildrenModel
+	- App\ActionsModule\Model\InsuranceModel
+	- App\ActionsModule\Model\ActiontypeModel
+	- App\ActionsModule\Model\MessagesModel
+
+	- App\ActionsModule\Service\ChildrenService
+	- App\ActionsModule\Service\StuffService
+	- App\ActionsModule\Service\Authenticator
+
+# APP
+	- App\Model\ProfileModel
+	- App\Model\CertificatesModel
+	- App\Model\CertificatesTypesModel
+	- App\Model\StuffModel
+	- App\Model\MenuModel
+	- App\Model\UserModel
+	- App\Model\TypesModel
+	- App\Model\Translator
+
+	- App\Service\StuffService
+	- App\Service\UserService
+	- App\Service\CertificatesTypesService
+	- App\Service\TypesService
+
+parameters:
+	version: 1.0
+	appName: ČČK OS Kolín
+	frontPath: /vendor/gentelella/
+	frontImages: /images/
+	dataPath: /data/
+	front: /

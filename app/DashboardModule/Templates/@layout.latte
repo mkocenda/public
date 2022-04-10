@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{$appName}</title>
+
+    <!-- Bootstrap -->
+    <link href="{$frontPath}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{$frontPath}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{$frontPath}/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{$frontPath}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="{$frontPath}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{$frontPath}/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="{$frontPath}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{$frontPath}/build/css/custom.min.css" rel="stylesheet">
+
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a n:href="Dashboard:" class="site_title"><img src="{$frontImages}\cck_logo.png" class="img-circle profile_img" style="margin: 0px; width: 50px">&nbsp;<span>{$appName}</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_info"">
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                    </div>
+{if (in_array('admin',$user->role)) }
+                    <div class="menu_section">
+                        <h3>Administrace</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-windows"></i> Personál <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="Stuff:stuff">Zaměstanci</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-windows"></i> Personál <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="Stuff:stuff">Zaměstanci</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a><i class="fa fa-sitemap"></i> Nastavení <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="Types:list">Typy akcí</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+{/if}
+                </div>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                {$fullname}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a n:href=":User:profile"> Profil</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span>Nastavení</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Nápověda</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Odhlášení</a></li>
+                            </ul>
+                        </li>
+{include messages.latte}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+       <div class="right_col" role="main">
+{block content}
+{/block}
+       </div>
+        <!-- footer content -->
+    </div>
+</div>
+
+{foreach $flashes as $flash}
+    <div class="flash">
+        <div class="flash__icon flash_{$flash->type}">
+            <i class="icon fa fa-check-circle-o"></i>
+        </div>
+        <p class="flash__body">
+            {$flash->message}
+        </p>
+    </div>
+
+{/foreach}
+
+
+
+<!-- jQuery -->
+<script src="{$frontPath}/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="{$frontPath}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="{$frontPath}/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="{$frontPath}/vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="{$frontPath}/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="{$frontPath}/vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="{$frontPath}/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="{$frontPath}/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="{$frontPath}/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="{$frontPath}/vendors/Flot/jquery.flot.js"></script>
+<script src="{$frontPath}/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="{$frontPath}/vendors/Flot/jquery.flot.time.js"></script>
+<script src="{$frontPath}/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="{$frontPath}/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="{$frontPath}/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="{$frontPath}/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="{$frontPath}/vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="{$frontPath}/vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="{$frontPath}/vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="{$frontPath}/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="{$frontPath}/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="{$frontPath}/vendors/moment/min/moment.min.js"></script>
+<script src="{$frontPath}/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{$frontPath}/build/js/custom.min.js"></script>
+
+<script>
+    $(".flash").addClass( "animate--drop-in-fade-out");
+    setTimeout(function(){
+        $(".flash").removeClass("animate--drop-in-fade-out");
+    }, 3500);
+
+</script>
+
+</body>
+</html>
+

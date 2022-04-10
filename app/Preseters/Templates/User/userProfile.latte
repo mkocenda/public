@@ -1,0 +1,85 @@
+{block content}
+
+<div role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {if $profileData}
+                                    <h3>{$profileData->name} {$profileData->surname} / {$profileData->alias}</h3>
+                                {/if}
+
+                                <img class="circle" src="data:image/png;base64, {$profileImage}">
+                                {if $profileData}
+                                    <h2><i class="fa fa-envelope-o"></i> {$profileData->email}</h2>
+                                    <h2><i class="fa fa-calendar"></i> {$profileData->birthday|date:'d.m.Y'}</h2>
+                                {/if}
+                            </div>
+                            <div class="col-md-4">
+                                <h3>Platná osvědčení:</h3>
+                                <ul>
+                                    {foreach $certificates as $certificate}
+                                        {if $certificate->validto > date("Y-m-d") || $certificate->validto == '' }
+                                            <li>
+                                                {if $certificate->certfile}
+                                                    <a class="ajax" n:href="certificate! $certificate->userid, $certificate->id"><i class="fa fa-file-o"></i></a>
+                                                {else}
+                                                    <i style="width:70px">&nbsp;&nbsp;&nbsp;</i>
+                                                {/if}
+                                                {$certificate->name} - {$certificate->validfrom|date:'%d.%m.%Y'} / {$certificate->validto|date:'%d.%m.%Y'}</li>
+                                        {/if}
+                                    {/foreach}
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h3>Neplatná osvědčení:</h3>
+                                <ul>
+                                    {foreach $certificates as $certificate}
+                                        {if $certificate->validto < date("Y-m-d") && $certificate->validto <> '' }
+                                            <li style="color:red">{$certificate->name} - {$certificate->validfrom|date:'%d.%m.%Y'} / {$certificate->validto|date:'%d.%m.%Y'}</li>
+                                        {/if}
+                                    {/foreach}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a n:href="modifyProfile! $userid" class="btn btn-primary ajax" style="width: 150px;">Upravit profil</a>
+                                <br>
+                                <a n:href="addCertificate! $userid" class="btn btn-primary ajax" style="width: 150px;">Přidat osvědčení</a>
+                            </div>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<style>
+    .circle {
+        display: block;
+        width: 150px;
+        height: 150px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-border-radius: 99em;
+        -moz-border-radius: 99em;
+        border-radius: 99em;
+        border: 5px solid #eee;
+    }
+</style>
+

@@ -1,0 +1,75 @@
+{block content}
+
+{form editChildForm}
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <h3>Editace záznamu dítěte</h3>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                {label name}
+                                <div class="input-group input-group-icon">
+                                        <span class="input-group-addon">
+                                            <span class="icon"><i class="fa fa-fw fa-clear"></i></span>
+                                        </span>
+                                    {input name class=>"form-control"}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                {label surname}
+                                <div class="input-group input-group-icon">
+                                        <span class="input-group-addon">
+                                            <span class="icon"><i class="fa fa-fw fa-clear"></i></span>
+                                        </span>
+                                    {input surname class=>"form-control"}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                {label birthday}
+                                <div class="input-group input-group-icon">
+                                        <span class="input-group-addon">
+                                            <span class="icon"><i class="fa fa-fw fa-calendar"></i></span>
+                                        </span>
+                                        {input birthday class=>"form-control"}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                {label insurance_id}
+                                <div class="input-group input-group-icon">
+                                        <span class="input-group-addon">
+                                            <span class="icon"><i class="fa fa-fw fa-calendar"></i></span>
+                                        </span>
+                                    {input insurance_id class=>"form-control"}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                {label note}
+                                <div class="input-group input-group-icon">
+                                        {input note class=>"form-control"}
+                                </div>
+                                {input parent_id}
+                                {input child_id}
+                                {input submit}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/form}

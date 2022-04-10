@@ -1,0 +1,48 @@
+{block content}
+
+<!-- page content -->
+<div role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <h3>Typy akcí</h3>
+                                            <div class="actions text-right">
+                                                <a n:href="addType!" class="btn btn-success btn-flat btn-sm">
+                                                    <i class="fa fa-plus-circle"></i> Přidat typ akce
+                                                </a>
+                                            </div>
+
+                                            {snippet typesGrid}
+                                                {control typesGrid}
+                                            {/snippet}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<!-- /page content -->
+<style>
+    .col-action { width: 60px;}
+    .col-color  { width: 100px;}
+</style>

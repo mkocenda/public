@@ -1,0 +1,62 @@
+<div class="modal fade" id="actionDetailFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_edit}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form parentFormModal}
+                            {label name}
+                            {input name class=>"form-control"}
+                            {label surname}
+                            {input surname class=>"form-control"}
+                            {label email}
+                            {input email class=>"form-control"}
+                            {label phone}
+                            {input phone class=>"form-control"}
+                            {label user_id}
+                            {input user_id class=>"form-control"}
+                            <br>
+                        {input id}
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input submit  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal {
+        float: right;
+        padding-top: 5px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog{
+        min-width: 900px;
+    }
+    .modal-body{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    var $modal = $('#actionDetailFormModal');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+    });
+
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{$appName} | </title>
+
+	<link href="{$frontPath}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{$frontPath}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="{$frontPath}/vendors/nprogress/nprogress.css" rel="stylesheet">
+	<link href="{$frontPath}/vendors/animate.css/animate.min.css" rel="stylesheet">
+	<link href="{$frontPath}/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="login">
+<div class="text-center">
+	<img class="mx-auto d-block" src="{$frontImages}/logo.png">
+</div>
+
+<div class="login_wrapper">
+	<div class="animate form login_form">
+		<section class="login_content">
+			{form logoutForm}
+				<h1>{_logout}</h1>
+				<div class="clearfix">
+					{input logout class=>"no-margin btn-lg btn-danger btn-block"}
+				</div>
+			{/form}
+		</section>
+	</div>
+
+</div>
+</div>
+</body>
+</html>

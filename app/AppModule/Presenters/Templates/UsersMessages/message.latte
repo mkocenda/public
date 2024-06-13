@@ -1,0 +1,62 @@
+<div class="modal fade" id="messageFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form messageFormModal}
+                            {label fullname}
+                            {input fullname class=>"form-control"}
+                            {label caption}
+                            {input caption class=>"form-control"}
+                            {label message}
+                            {input message class=>"form-control"}
+                            {label created_at}
+                            {input created_at class=>"form-control"}
+                            <br>
+                            {input id}
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                            </div>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .card-title {
+            padding-left: 10px;
+        }
+
+        .modal-dialog{
+            min-width: 900px;
+        }
+        .modal-body{
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        #frm-messageFormModal-created_at{
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        var $modal = $('#messageFormModal');
+        $modal.modal('show');
+        $('[name="cancel"]').on('click', function () {
+            $modal.modal('hide');
+        });
+        $textArea = $('#frm-messageFormModal-message');
+        height = 255;
+        if ($textArea.get(0).scrollHeight < 255) {
+            height = $textArea.get(0).scrollHeight;
+        }
+        $textArea.height(height);
+
+    </script>

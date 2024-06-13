@@ -1,0 +1,54 @@
+{block content}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>{_actions} - {_planned}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12">
+                    <div style="float:right">
+                    </div>
+                </div>
+                {snippet stuffActionsGrid}
+                    {control stuffActionsGrid}
+                {/snippet}
+            </div>
+        </div>
+    </div>
+</div>
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<style>
+    th .col-birthday{
+        max-width: 100px !important;
+    }
+
+     ol, ul {
+         margin-top: 0;
+         margin-bottom: -6px;
+     }
+
+    .col-limit{
+        width: 80px;
+    }
+    .col-agefrom{
+        width: 80px;
+    }
+    .col-ageto{
+        width: 80px;
+    }
+    .col-starttime{
+        width: 80px;
+    }
+    .col-stoptime{
+        width: 80px;
+    }
+</style>

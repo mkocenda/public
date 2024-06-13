@@ -1,0 +1,149 @@
+<html>
+<head>
+	<style>
+        li {
+            list-style: none
+        }
+
+        .small {
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        .normal {
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .bold {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .italic {
+            font-weight: normal;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .s1 {
+            height: 5px;
+            border-bottom: 4px solid black;
+        }
+
+        .right {
+            text-align: right;
+            width: 66%;
+            float: right;
+        }
+
+        .left {
+            width: 33%;
+            text-align: left;
+            float: left;
+        }
+
+        .qr {
+            width: 25%;
+            position: relative;
+            float: right;
+            border: 1px solid #000000;
+        }
+
+        .separator {
+            border-top: 1px solid #D8D8D8;
+            margin-top: 10px;
+            padding-top: 10px
+        }
+
+        .footer {
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .text {
+            overflow: hidden;
+        }
+	</style>
+</head>
+<body>
+<div class="page>">
+	<div>
+		<div style="width: 70%; position:relative; float: left;">
+			<h3>{_injury_action_card_text|upper}</h3>
+			<span class="bold">{$participant_action->name}
+				{if $participant_action->starttime != '-0001-11-30 00:00:00' }
+					- {$participant_action->starttime|date:'j. n. Y'} / {$participant_action->stoptime|date:'j. n. Y'}
+				{/if}
+			</span>
+			{if $participant_action->motto}
+				<br>
+				<span class="italic">("{$participant_action->motto}")</span>
+				<br>
+			{/if}
+		{if $participant_action->description}
+				<span class="normal">{$participant_action->description}</span>
+				<br>
+			{/if}
+		</div>
+		<div class="qr">
+			{$qr_code|noescape}
+		</div>
+	</div>
+	<br>
+	<div class="s1"></div>
+	<h1>{$participant->name} {$participant->surname} / {$participant->birthday|date:'j. n. Y'}</h1>
+	<h3>{_insurance}: {$insurance->code} / {$insurance->name}</h3>
+	{if $parent}
+		<h2>{_parent}</h2>
+		<ul>
+			<li><b>{$parent->name} {$parent->surname}</b></li>
+			<li><b>{$parent->email}</b></li>
+			<li><b>{$parent->phone}</b></li>
+		</ul>
+	{/if}
+	<div class="separator"></div>
+	<h2>{_pills_records}</h2>
+	<table>
+		<tr>
+			<td style="width: 33%; font-weight: bold;">{_pill_name_lbl}</td>
+			<td style="width: 33%; font-weight: bold;">{_date_apply_lbl}</td>
+			<td style="width: 33%; font-weight: bold;">{_medical_lbl}</td>
+		</tr>
+	{foreach $pills_records as $pill_record}
+			<tr>
+				<td>{$pill_record->pill_name}</td>
+				<td>{$pill_record->date_apply|date:'j. n. Y H:i'}</td>
+				<td>{$pill_record->name} {$pill_record->surname}</td>
+			</tr>
+	{/foreach}
+	</table>
+
+	<div class="separator"></div>
+	<h2>{_medical_records}</h2>
+	{foreach $participant_records as $participant_record}
+		<h3>{$participant_record->name} - {$participant_record->starttime|date:'j. n. Y'} / {$participant_record->stoptime|date:'j. n. Y'}</h3>
+		<span class="small">{$participant_record->description}</span>
+		<br>
+		<br>
+		Zapsal: {$participant_record->created|date:'j. n. Y'} - {$participant_record->s_surname} {$participant_record->s_name}
+	{/foreach}
+
+	<htmlpagefooter name="Footer">
+		<div class="footer separator">
+			<div class="left">
+				<small>Strana {l}PAGENO{r}/{l}nbpg{r}</small>
+			</div>
+			<div class="right">
+				<small>{$organisation->name} {$organisation->street} {$organisation->city} {$organisation->post} </small>
+				<br>
+				<small>Vygenerováno systémem A.D. a M. - MK-SOFT &copy;2023 - {=date('j.n.Y H:i:s')}</small>
+			</div>
+		</div>
+	</htmlpagefooter>
+	<sethtmlpagefooter name="Footer" value="on"/>
+</div>
+
+</body>
+</html>

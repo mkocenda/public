@@ -1,0 +1,52 @@
+<div class="modal fade" id="actionParticipantsFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_participants}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            {snippet actionAllowParticipantsGrid}
+                                {control actionAllowParticipantsGrid}
+                            {/snippet}
+                        </div>
+                    </div>
+                </div>
+                <div class="alignright" style="margin-right: 25px; margin-bottom: 10px;">
+                    <input type="button" name="close" value="{_btn_close}" class="btn btn-warning">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .btn-close-modal {
+        float: right;
+        padding-top: 5px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog {
+        min-width: 900px;
+    }
+
+    .col-birthday {
+        width: 130px;
+    }
+</style>
+
+<script>
+    var $modal = $('#actionParticipantsFormModal');
+    $modal.modal('show');
+    $('[name="close"]').on('click', function () {
+        $modal.modal('hide');
+    });
+
+</script>

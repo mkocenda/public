@@ -1,0 +1,36 @@
+{block content}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>{_parents}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12">
+                    <div style="float:right">
+                        <a n:href="addParent!" class="btn btn-success btn-flat btn-sm">
+                            <i class="fa fa-solid fa-list-tree"></i> {_addParent}
+                        </a>
+                    </div>
+                </div>
+                {snippet parentsGrid}
+                    {control parentsGrid}
+                {/snippet}
+            </div>
+        </div>
+    </div>
+</div>
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<style>
+    th .col-birthday{
+        max-width: 100px !important;
+    }
+</style>

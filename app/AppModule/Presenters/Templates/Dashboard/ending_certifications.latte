@@ -1,0 +1,19 @@
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="x_panel tile overflow_hidden">
+		<div class="x_title">
+			<h2>{_stuffs} - {_endind_certificates}</h2>
+			<div class="clearfix"></div>
+		</div>
+		<div class="x_content">
+			<table style="width:100%">
+				{foreach $ending_certificates as $ending_certificate}
+					<tr style="color: {$ending_certificate->backgroundcolor|noescape}">
+						<td><i class="fa {$ending_certificate->icon}"></i></td>
+						<td>{$ending_certificate->surname} {$ending_certificate->name} -  {$ending_certificate->cert_name}</td>
+						<td>{$ending_certificate->validto|date:'j.n.Y'} </td>
+					</tr>
+				{/foreach}
+			</table>
+		</div>
+	</div>
+</div>

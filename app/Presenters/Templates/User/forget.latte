@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta name="description" content="Systém pro akce, tábory a výlety">
+	<meta name="keywords" content="tábory, akce, předášky"/>
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="copyright" content="MK-SOFTWARE">
+	<meta name="author" content="Marian Kočenda">
+
+	<title>{$appName} | </title>
+
+	<!-- Bootstrap -->
+	<link href="{$frontPath}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="{$frontPath}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="{$frontPath}/vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- Animate.css -->
+	<link href="{$frontPath}/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+	<!-- Custom Theme Style -->
+	<link href="{$frontPath}/build/css/custom.min.css" rel="stylesheet">
+
+	<!-- jQuery -->
+	<script src="{$frontPath}/vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="{$frontPath}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body class="login">
+<div class="text-center">
+	<img class="mx-auto d-block" src="{$frontImages}/logo.png">
+</div>
+<div class="login_wrapper">
+	<div class="animate form login_form">
+		<section class="login_content">
+			{form forgetForm}
+				<h1>{_restore_password}</h1>
+				<div>
+					{input username class=>"form-control"}
+				</div>
+				<div>
+					{input email class=>"form-control"}
+				</div>
+				<div>
+					{input submit class=>"btn btn-success submit"}
+				</div>
+			{/form}
+		</section>
+	</div>
+</div>
+
+</body>
+</html>

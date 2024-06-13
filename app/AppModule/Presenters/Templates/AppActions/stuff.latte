@@ -1,0 +1,40 @@
+<div class="modal fade" id="actionStuffsGrid">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="row">
+                        <h1 class="card-title pull-center">{_stuffs}</h1>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-12">
+{if ($actionStatus == App\Model\Types::PLANNED)}
+                            <div style="float:right">
+                                <a n:href="addStuff! $id" class="btn btn-success btn-flat btn-sm">
+                                    <i class="fa fa-solid fa-user-plus"></i> {_addStuff}
+                                </a>
+                            </div>
+{/if}
+                        </div>
+                        {snippet stuffsGrid}
+                            {control stuffsGrid}
+                        {/snippet}
+                    </div>
+                    <br>
+                    <div class="alignright">
+                        <input type="button" name="cancel" value="{_btn_close}" class="btn btn-warning">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var $modal = $('#actionStuffsGrid');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+    });
+
+</script>

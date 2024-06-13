@@ -1,0 +1,28 @@
+{block content}
+
+{if $badge_panel == 1}
+    {include "badge_panel.latte"}
+{/if}
+<div class="row tile_count">
+    <!-- Koláčový graf funkcí zaměstnanců //-->
+    {if $certificates_panel == "1"}
+        {include "certification_panel.latte"}
+    {/if}
+
+    <!-- Končící osvědčení //-->
+    {if $ending_panel == "1"}
+        {include "ending_certifications.latte"}
+    {/if}
+
+    <!-- Narozeniny zaměstnanců //-->
+    {if $birthday_panel == "1"}
+        {include "birthday.latte"}
+    {/if}
+
+        <!-- Narozeniny zaměstnanců //-->
+    {if $actions_panel == "1"}
+        {include "incomming_panel.latte"}
+    {/if}
+
+</div>
+

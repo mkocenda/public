@@ -1,0 +1,113 @@
+<style>
+    .photo {
+        border: 1px solid #000000;
+        width: 150px;
+        height: 150px;
+    }
+
+    input[type=checkbox] {
+        margin-top: 10px;
+        width: 20px;
+        height: 20px;
+    }
+
+    #frm-stuffFormModal-active{
+        margin-right: 10px;
+    }
+
+    label[for=frm-stuffFormModal-active]{
+        align-items:center;
+    }
+
+    #frm-stuffFormModal-user_id{
+        width: 150px;
+    }
+
+    .auto{
+        min-width: 33.3%;
+        padding-left: 20px;
+    }
+</style>
+<div class="modal fade" id="stuffFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_stuff}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form stuffFormModal}
+                            <div class="col-xs-12">
+                                <div class="col-xs-3 auto">
+                                    {label name}
+                                    {input name class=>"form-control"}
+                                    {label surname}
+                                    {input surname class=>"form-control"}
+                                    {label alias}
+                                    {input alias class=>"form-control"}
+                                    {label email}
+                                    {input email class=>"form-control"}
+                                    {label active}
+                                    {input active class=>"form-control"}
+                                </div>
+                                <div class="col-xs-3 auto">
+                                    {label birthday}
+                                    {input birthday class=>"form-control"}
+                                    {label phone}
+                                    {input phone class=>"form-control"}
+                                    {label work_from}
+                                    {input work_from class=>"form-control"}
+                                    {label work_to}
+                                    {input work_to class=>"form-control"}
+                                    {label organisation_id}
+                                    {input organisation_id class=>"form-control"}
+                                </div>
+                                <div class="col-xs-3 auto">
+                                    <label>Fotografie</label>
+                                    {if isset($photo)}
+                                        <img src="data:image/png;base64, {$photo}" class="photo">
+                                    {/if}
+                                    {label user_id}
+                                    {input user_id class=>"form-control"}
+                                </div>
+                            </div>
+                            <br>
+                        {input id}
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input submit  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal {
+        float: right;
+        padding-top: 5px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .icon {
+        font-size: 25px;
+        padding: 10px;
+    }
+</style>
+
+<script>
+    var $modal = $('#stuffFormModal');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+    });
+</script>

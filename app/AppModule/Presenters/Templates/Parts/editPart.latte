@@ -1,0 +1,64 @@
+<div class="modal fade" id="partDetailFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_part}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form partFormModal}
+                            {label part_no}
+                            {input part_no class=>"form-control"}
+                            {label description}
+                            {input description class=>"form-control"}
+                            {label qty}
+                            {input qty class=>"form-control"}
+                            {label price}
+                            {input price class=>"form-control"}
+                            {label image_id}
+                            {input image_id class=>"form-control"}
+                            {label warehouse_id}
+                            {input warehouse_id class=>"form-control"}
+                            <br>
+                            {input id}
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input submit  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-close-modal {
+            float: right;
+            padding-top: 5px;
+        }
+
+        .card-title {
+            padding-left: 10px;
+        }
+
+        .modal-dialog{
+            min-width: 600px;
+        }
+        .modal-body{
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+    </style>
+
+    <script>
+        var $modal = $('#partDetailFormModal');
+        $modal.modal('show');
+        $('[name="cancel"]').on('click', function () {
+            $modal.modal('hide');
+        });
+
+    </script>

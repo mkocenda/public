@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<meta name="description" content="Rezervační a servisní systém pro autoservisy">
+	<meta name="keywords" content="autoservis, rezervace, servis"/>
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="copyright" content="MK-SOFTWARE">
+	<meta name="author" content="Marian Kočenda">
+
+
+	<title>{$appName} | </title>
+
+	<!-- Bootstrap -->
+	<link href="{$frontPath}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="{$frontPath}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="{$frontPath}/vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- Animate.css -->
+	<link href="{$frontPath}/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+	<!-- Custom Theme Style -->
+	<link href="{$frontPath}/build/css/custom.min.css" rel="stylesheet">
+
+	<!-- jQuery -->
+	<script src="{$frontPath}/vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="{$frontPath}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<style>
+
+        .flash {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: 350px;
+            font-size: 15px;
+            border: 1px solid #000000;
+            background-color: white;
+            padding: 10px;
+            display: none;
+        }
+
+        .flash__icon {
+            float: left;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        .flash_success {
+            background-color: #00CC33;
+        }
+
+        .flash_warning {
+            background-color: #AA6708;
+        }
+
+        .flash_danger {
+            background-color: #DC322F;
+        }
+
+        .flash__body {
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        .animate--drop-in-fade-out {
+            display: flex;
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+	</style>
+</head>
+
+<body class="login">
+<div class="text-center">
+	<img class="mx-auto d-block" src="{$frontImages}/logo.png">
+</div>
+
+<a class="hiddenanchor" id="signup"></a>
+<a class="hiddenanchor" id="signin"></a>
+<a class="hiddenanchor" id="forget"></a>
+
+<div class="login_wrapper">
+	<div class="animate form login_form">
+		<section class="login_content">
+			{form loginForm}
+				<h1>{_login_caption}</h1>
+				<div>
+					{input username class=>"form-control"}
+				</div>
+				<div>
+					{input password class=>"form-control"}
+				</div>
+				<div class="separator"></div>
+				<div>
+					<div>
+						{input submit class=>"btn btn-success submit"}
+					</div>
+					{if $allow_reset}
+						<div>
+							<input type="button" class="btn btn-success" onClick='location.href="/forget/"'
+								   value="{_'lost_password'}">
+						</div>
+					{/if}
+				</div>
+				{if $allow_signup}
+					<div class="row">
+						<input type="button" onClick='location.href="/login/#signup"' class="btn btn-success"
+							   value="{_create_account}">
+					</div>
+				{/if}
+			{/form}
+		</section>
+	</div>
+
+	<div id="register" class="animate form registration_form">
+		<section class="login_content">
+			{form signForm}
+				<h1>{_create_account}</h1>
+				<div>
+					{input username class=>"form-control"}
+				</div>
+				<div>
+					{input email class=>"form-control"}
+				</div>
+				<div>
+					{input password class=>"form-control"}
+				</div>
+				<div>
+					<input type="button" class="btn btn-success" onClick='location.href="#"' value="{_btn_registrate}">
+				</div>
+
+				<div class="separator"></div>
+				<div class="row">
+					<p class="change_link">{_account_exist}
+						<input type="button" class="btn btn-success" onClick='location.href="/#signin"'
+							   value="{_btn_login}">
+					</p>
+				</div>
+			{/form}
+		</section>
+	</div>
+</div>
+
+
+{foreach $flashes as $flash}
+	<div class="flash flash_{$flash->type}">
+		<div class="flash__icon flash_{$flash->type}">
+			<i class="icon fa fa-check-circle-o"></i>
+		</div>
+		<p class="flash__body">
+			{$flash->message}
+		</p>
+	</div>
+{/foreach}
+
+<script>
+    $(".flash").addClass("animate--drop-in-fade-out");
+    setTimeout(function () {
+        $(".flash").removeClass("animate--drop-in-fade-out");
+    }, 3500);
+</script>
+
+</body>
+</html>

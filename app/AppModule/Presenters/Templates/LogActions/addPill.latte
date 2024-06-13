@@ -1,0 +1,92 @@
+<div class="modal fade" id="addPillModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_injury}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="animate form">
+                            {form addPillFormModal}
+                                {label pill_name}
+                                {input pill_name class=>"form-control"}
+                                {label dosage}
+                                {input dosage class=>"form-control"}
+                                {input participant_id}
+                                {input action_id}
+                                {input pill_id}
+                                <br>
+                                <div class="alignright">
+                                    {input cancel  class=>"btn btn-warning"}
+                                    {input submit  class=>"btn btn-success"}
+                                </div>
+                            {/form}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog {
+        min-width: 900px;
+    }
+
+    .modal-body {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    let $modal = $('#addPillModal');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+        var $url;
+        {if $action_status == 1}
+        $url = 'planned';
+        {/if}
+        {if $action_status == 2}
+        $url = 'running';
+        {/if}
+        {if $action_status == 3}
+        $url = 'done';
+        {/if}
+        $(location).attr('href', '/logs/' + $url + '/list/?id={$participant_id|noescape}&action_id={$action_id|noescape}&do=pills');
+    });
+
+    $(document).ready(function() {
+        if (typeof ($.fn.autocomplete) === 'undefined') { return; }
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/v1/pills/list/?api_key={$api_key|noescape}',
+            dataType: 'json',
+            async: false,
+            success: function(d){
+                var pillsArray = $.map(d, function (value, key) {
+                    return {
+                        value: value,
+                        data: key
+                    };
+                });
+
+                $("#pill_autocomplete").autocomplete({
+                    lookup: pillsArray,
+                    onSelect: function (suggestion) {
+                        $("#pill_id").val(suggestion.data);
+                    }
+                });
+            }
+        });
+    });
+</script>

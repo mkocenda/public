@@ -1,0 +1,70 @@
+<div class="modal fade" id="actionReservationGrid">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="row">
+                        <h1 class="card-title pull-center">{_reservation}</h1>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-12">
+                            <div style="float:right">
+                                <a n:href="addReservation! $action_id" class="btn btn-success btn-flat btn-sm">
+                                    <i class="fa fa-solid circle-exclamation-check"></i> {_addReservation}
+                                </a>
+                            </div>
+                        </div>
+                        {snippet reservedPartsGrid}
+                            {control reservedPartsGrid}
+                        {/snippet}
+                    </div>
+                    <br>
+                    <div class="alignright">
+                        <a n:href="borrowing! $action_id" class="btn btn-success btn-flat btn-sm">
+                            <i class="fa fa-solid fa-box-check"></i> {_borrowing}
+                        </a>
+                        <input type="button" name="cancel" value="{_btn_close}" class="btn btn-warning btn-flat btn-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-dialog {
+        min-width: 900px;
+    }
+
+    .modal-body {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .col-amount {
+        max-width: 20px;
+    }
+
+    .col-part_no {
+        max-width: 20px;
+    }
+
+    .col-name {
+        max-width: 25px;
+    }
+
+    .col-description {
+        max-width: 700px;
+    }
+
+</style>
+
+<script>
+    var $modal = $('#actionReservationGrid');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+        $(location).attr('href', '/actions/planned/');
+    });
+
+</script>

@@ -1,0 +1,17 @@
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="x_panel tile overflow_hidden">
+		<div class="x_title">
+			<h2>{_incomming_actions}</h2>
+			<div class="clearfix"></div>
+		</div>
+		<div class="x_content">
+			<table style="width:100%">
+				{foreach $incomming_actions as $incomming_action}
+					<tr >
+						<td class="col-md-8">{$incomming_action->name}</td><td class="col-md-4">{$incomming_action->starttime|date:'j.n.Y'} -  {$incomming_action->stoptime|date:'j.n.Y'}</td>
+					</tr>
+				{/foreach}
+			</table>
+		</div>
+	</div>
+</div>

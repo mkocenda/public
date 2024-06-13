@@ -1,0 +1,73 @@
+<div class="modal fade" id="certificateFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_certificate_type}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form certificateFormModal}
+                            {label certtype}
+                            {input certtype class=>"form-control"}
+                            {label validfrom}
+                            {input validfrom class=>"form-control"}
+                            {label validto}
+                            {input validto class=>"form-control"}
+                            {if $certificate_id == 0}
+                                {label certfile}
+                                {input certfile class=>"form-control"}
+                            {/if}
+                            <br>
+                            {input id}
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input submit  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal {
+        float: right;
+        padding-top: 5px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog{
+        min-width: 600px;
+    }
+    .modal-body{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    var $modal = $('#certificateFormModal');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+    });
+
+    var $certificate_id = $('[name="id"]');
+    if ($certificate_id.val() > 0)
+    {
+        var $certtype = $('#frm-certificateFormModal-certtype');
+        var $validfrom = $('#frm-certificateFormModal-validfrom');
+
+        $certtype.attr('readonly','true');
+        $validfrom.attr('readonly','true');
+    }
+
+</script>

@@ -1,0 +1,81 @@
+
+
+
+<div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{_planned}</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <p>Simple table with project listing with progress and editing options</p>
+
+                        <!-- start project list -->
+                        <table class="table table-striped projects">
+                            <thead>
+                            <tr>
+                                <th style="width: 1%">#</th>
+                                <th style="width: 20%">{_name}</th>
+                                <th>{_members}</th>
+                                <th>{_progress}</th>
+                                <th>{_status}</th>
+                                <th style="width: 20%">{_actions}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>#</td>
+                                <td>
+                                    <a>Pesamakini Backend UI</a>
+                                    <br />
+                                    <small>Created 01.01.2015</small>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <img src="/data/users/user.png" class="avatar" alt="Avatar">
+                                        </li>
+                                        <li>
+                                            <img src="/data/users/user.png" class="avatar" alt="Avatar">
+                                        </li>
+                                        <li>
+                                            <img src="/data/users/user.png" class="avatar" alt="Avatar">
+                                        </li>
+                                        <li>
+                                            <img src="/data/users/user.png" class="avatar" alt="Avatar">
+                                        </li>
+                                        <li>
+                                            <img src="/data/users/user.png" class="avatar" alt="Avatar">
+                                        </li>
+                                        <li>
+                                            <img src="/data/users/user.png" class="avatar" alt="Avatar">
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="project_progress">
+                                        <progress class="bg-green" id="file" max="100" value="70"></progress>
+
+                                    <small>70% Hotovo</small>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-xs">{_status}</button>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> {_view} </a>
+                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> {_edit} </a>
+                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> {_delete} </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- end project list -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+

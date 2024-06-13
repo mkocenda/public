@@ -1,0 +1,42 @@
+<style>
+	.item-color {
+		color: white;
+	}
+
+	.icon-color {
+		color: white;
+		position: relative;
+		top: 7px;
+	}
+
+</style>
+<div id="sidebar-menu" class="main_menu_side main_menu">
+	<div class="menu_section">
+		<ul class="nav side-menu">
+			{foreach $menu as $menuItems}
+				<li><a>{$menuItems->title}
+						<span class="fa fa-chevron-down"></span>
+					</a>
+					<ul class="nav child_menu">
+						{foreach $menuItems->items as $item}
+							<li style="height:35px;"><span class = "icon-color"><i class="fa {$item->data->icon}"></i><a class = "item-color" n:href="{$item->action}">{$item->title}</a></span></li>
+						{/foreach}
+					</ul>
+				</li>
+			{/foreach}
+		</ul>
+	</div>
+	<div id="copyright">
+		<ul style="list-style: none; padding-left: 10px">
+			{foreach $app_menu as $subMenuItems}
+				<li >
+					{if ($subMenuItems->data->color <> '') }
+						<a style="color: {$subMenuItems->data->color|noescape};" n:href="$subMenuItems->action"><i class="fa {$subMenuItems->data->icon}"></i>{$subMenuItems->title}</a>
+					{else}
+						<a style="color: #FFFFFF;" n:href="$subMenuItems->action"><i class="fa {$subMenuItems->data->icon}"></i>{$subMenuItems->title}</a>
+					{/if}
+				</li>
+			{/foreach}
+		</ul>
+	</div>
+</div>

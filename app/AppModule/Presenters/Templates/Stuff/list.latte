@@ -1,0 +1,49 @@
+{block content}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>{_stuff}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12">
+                    <div style="float:right">
+                        <a n:href="add!" class="btn btn-success btn-flat btn-sm">
+                            <i class="fa fa-solid fa-people-simple"></i> {_addStuff}
+                        </a>
+                    </div>
+                </div>
+                {snippet stuffsGrid}
+                    {control stuffsGrid}
+                {/snippet}
+            </div>
+        </div>
+    </div>
+</div>
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<style>
+    .col-birthday{
+        max-width: 100px !important;
+        text-align: right;
+    }
+    .col-work_from{
+        text-align: right;
+    }
+
+    .col-work_to{
+        text-align: right;
+    }
+
+    .col-active{
+        text-align: center;
+    }
+
+</style>

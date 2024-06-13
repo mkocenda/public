@@ -2,49 +2,119 @@
 
 namespace App\Model;
 
-use Nette;
+use Nette\Utils\ArrayHash;
 
-class CertificatesModel
+class CertificatesModel extends DBModel
 {
 
-    public $database;
-
-    public function __construct(Nette\Database\Context $database)
+    /**
+     * @return array|\Nette\Database\Table\IRow[]
+     */
+    public function listAllCertificates()
     {
-        $this->database = $database;
+        return $this->db->table('certificates')->fetchAll();
     }
-
-
-    public function loadUserCartificates($userid)
+	
+	/**
+	 * @param int $id
+	 * @return false|\Nette\Database\Table\ActiveRow
+	 */
+	public function getCertificateByID(int $id)
+	{
+		return $this->db->query('SELECT c.id, ct.name, c.validfrom, c.validto, c.certfile, c.stuff_id
+									 FROM certificates c
+									 JOIN certificates_type ct ON ct.id = c.certtype
+									 WHERE c.id = ?', $id)->fetch();
+	}
+	
+	/**
+	 * @param int $organisation_id
+	 * @return array|\Nette\Database\Table\IRow[]
+	 */
+	public function getAllCertificatesTypes(int $organisation_id)
+	{
+		return $this->db->table('certificates_type')->where('organisation_id', $organisation_id)->fetchAll();
+	}
+	
+	public function getCertificateType(int $id, int $organisation_id)
+	{
+		return $this->db->table('certificates_type')->where('id', $id)->where('organisation_id', $organisation_id)->fetch();
+	}
+	
+	
+    /**
+     * @param int $stuff_id
+     * @return array|\Nette\Database\IRow[]
+     */
+    public function getStuffAllCertificates(int $stuff_id)
     {
-        return $this->database->query('SELECT c.userid, c.id, c.validfrom, c.validto, c.certfile, ct.name, ct.backgroundcolor 
-                                           FROM certificates c 
-                                           JOIN certificates_type ct ON c.certtype = ct.id
-                                           WHERE c.userid = ?
-                                           ORDER BY c.validfrom',$userid)
-                              ->fetchAll();
+        return $this->db->query('SELECT c.*
+                                    FROM certificates c
+                                    JOIN stuff s ON s.id = c.stuff_id
+                                    JOIN users u ON u.id = s.user_id
+                                    WHERE s.id = ?', $stuff_id)->fetchAll();
     }
 
-    public function loadCertificate($userid, $certid){
-        $certificate = $this->database->table('certificates')->where('userid = ?',$userid)->where('id = ?',$certid)->fetch();
-        $file = fopen(__DIR__.'/../../data/certificates/'.$userid.'/'.$certificate->certfile,'r');
-        return base64_encode(fread($file,filesize(__DIR__.'/../../data/certificates/'.$userid.'/'.$certificate->certfile)));
-    }
-
-    public function getCertificateFilename($userid, $certid){
-        $certificate = $this->database->table('certificates')->where('userid = ?',$userid)->where('id = ?',$certid)->fetch();
-        return __DIR__.'/../../data/certificates/'.$userid.'/'.$certificate->certfile;
-    }
-
-    public function saveCertificate($userid, $certtype, $validfrom, $validto, $certfile)
+    /**
+     * @param int $stuff_id
+     * @return array|\Nette\Database\IRow[]
+     */
+    public function getStuffValidCertificates(int $stuff_id)
     {
-        $data = array ('userid'=>$userid, 'certtype'=>$certtype, 'validfrom'=>$validfrom, 'validto'=>$validto, 'certfile'=>$certfile->name);
-
-        if ($certfile->size > 0){
-            /** Todo UPLOAD FILE */
-        }
-        $this->database->table('certificates')->insert($data);
-
+        return $this->db->query('SELECT c.*
+                                    FROM certificates c
+                                    JOIN stuff s ON s.id = c.stuff_id
+                                    JOIN users u ON u.id = s.user_id
+                                    WHERE s.id = ?
+                                    AND c.validto < NOW()', $stuff_id)->fetchAll();
     }
 
+    /**
+     * @param int $organisation_id
+     * @param int $cert_type
+     * @return array|\Nette\Database\IRow[]
+     */
+    public function getValidStuffCertificatesByType(int $organisation_id, int $cert_type)
+    {
+        $organisation_where = $organisation_id > 0 ? ' AND s.organisation_id = ? ' : ' and 0 = ?';
+        return $this->db->query('SELECT s.*, c.validfrom, c.validto, c.certfile, c.status
+                                     FROM stuff s
+                                     JOIN users u ON u.id = s.user_id
+                                     JOIN certificates c ON c.stuff_id = s.id
+                                     JOIN certificates_type ct ON ct.id = c.certtype
+                                     WHERE ct.id = ? ' . $organisation_where,
+            $cert_type, $organisation_id)->fetchAll();
+    }
+	
+	/**
+	 * @param $data
+	 * @return void
+	 */
+	public function addCertificateType($data){
+		$this->db->table('certificates_type')->insert($data);
+	}
+	
+	/**
+	 * @param $data
+	 * @return void
+	 */
+	public function updateCertificateType($data){
+		$this->db->table('certificates_type')->where('id',$data->id)->update($data);
+	}
+	
+	/**
+	 * @param ArrayHash $data
+	 * @return void
+	 */
+	public function saveCertificate(ArrayHash $data)
+	{
+		if ($data->id)
+		{
+			$this->db->table('certificates')->where('id', $data->id)->update($data);
+		} else
+		{
+			$this->db->table('certificates')->insert($data);
+		}
+	}
+	
 }

@@ -1,0 +1,56 @@
+{block content}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>{_messages}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12">
+                    <div style="float:right">
+                        <a n:href="add!" class="btn btn-success btn-flat btn-sm">
+                            <i class="fa fa-solid fa-paper-plane"></i> {_send_message}
+                        </a>
+                    </div>
+                </div>
+                {snippet messagesGrid}
+                    {control messagesGrid}
+                {/snippet}
+            </div>
+        </div>
+    </div>
+</div>
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<style>
+    .col-fromuser {
+        max-width: 50px !important;
+    }
+    .col-caption {
+        min-width: 400px !important;
+    }
+
+    .col-created_at {
+        max-width: 100px !important;
+    }
+
+    #frm-messagesGrid-filter-group_action-group_action{
+        width: 250px !important;
+        display: unset;
+    }
+
+    #messagesgridgroup_action_submit{
+        float: right;
+    }
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/nette.ajax.js@2.3.0/nette.ajax.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ublaboo-datagrid@6.2.24/assets/datagrid.js"></script>

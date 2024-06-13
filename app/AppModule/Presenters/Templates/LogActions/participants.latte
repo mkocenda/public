@@ -1,0 +1,59 @@
+<div class="modal fade" id="participantsModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_participants}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        <div class="col-md-12">
+                            <div class="x_content">
+                                {snippet actionParticipantsGrid}
+                                    {control actionParticipantsGrid}
+                                {/snippet}
+                                <div class="alignright">
+                                    <input type="button" name="cancel" value="{_btn_close}" class="btn btn-warning">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .col-insurance_id {
+        max-width: 66px;
+    }
+
+    .col-birthday {
+        max-width: 76px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog {
+        min-width: 900px;
+    }
+
+    .modal-body {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    var $modal = $('#participantsModal');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+    });
+
+</script>

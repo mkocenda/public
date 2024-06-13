@@ -1,0 +1,86 @@
+<style>
+	.unread {
+		font-weight: bold;
+	}
+
+	.datetime {
+		font-weight: normal;
+		font-size: 11px;
+		font-style: italic;
+		right: 35px;
+		float: right;
+	}
+</style>
+	<ul class="nav navbar-nav ">
+		<li role="presentation" class="dropdown">
+			<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+				<i class="fa-solid fa-envelope"></i>
+				<span id = "messages" class="badge bg-green"></span>
+			</a>
+			<ul id="message_menu" class="dropdown-menu list-unstyled msg_list" role="menu">
+				<div style="overflow-y: scroll; height:auto; max-height: 400px !important;">
+						<span id="messageItems">
+
+						</span>
+				</div>
+				<li>
+					<div class="text-center">
+						<a id="all_messages" n:href="UsersMessages:userMessages">
+							<strong>{_show_all_messages}</strong>
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<!-- Message menu end //-->
+	</ul>
+
+	<script>
+		$(document).ready(function() {
+			getMessageCount();
+			setInterval(getMessageCount,60000);
+		})
+
+		function dateFormat(dateObject) {
+			var d = new Date(dateObject);
+			var day = d.getDate();
+			var month = d.getMonth() + 1;
+			var year = d.getFullYear();
+			var hour = d.getHours();
+			var minute = d.getMinutes()
+			var seconds = d.getSeconds()
+			if (day < 10) { day = "0" + day;}
+			if (month < 10) { month = "0" + month;}
+			if (hour < 10) { hour = "0" + hour;}
+			if (minute < 10) { minute = "0" + minute;}
+			if (seconds < 10) { seconds = "0" + seconds;}
+			return hour+":"+minute+":"+seconds+" "+day + "." + month + "." + year;
+		};
+
+		function getMessageCount(){
+			$.get( "/user/getUserMessages/" )
+					.done(function(data) {
+						$('#all_messages').removeAttr("href");
+						$('#messages').html(data.count);
+						messages = data.messages;
+						messageItems = $('#messageItems');
+						messageItems.empty();
+						for (key in messages) {
+							unread = '';
+							normal = 'style="font-weight: normal" '
+							if (messages[key]['unread'] == 1) { unread = 'unread'; normal = '' }
+							let item = '<li>'+
+											'<a class="'+unread+'" href="/user/messages/?id=' + messages[key]['id'] + '&do=read">'+
+												'<span class="image"><img src="/images/blank.jpg"></span>'+
+												'<span>'+messages[key]['fromuser']+'</span>'+
+												'<span class="datetime" '+normal+'>'+dateFormat(messages[key]['created'])+'</span>'+
+												'<span class="message">'+messages[key]['caption']+'</span>'+
+											'</a>'+
+										'</li>';
+							messageItems.append(item);
+							$('#all_messages').attr("href",'/user/messages/');
+						}
+					});
+			}
+	</script>

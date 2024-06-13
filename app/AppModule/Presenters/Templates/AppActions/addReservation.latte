@@ -1,0 +1,91 @@
+<div class="modal fade" id="addReservationForm">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_reservation}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form reservationForm}
+                            {input id}
+                            {input action_id}
+                            {label part_id}
+                            {input part_id  class=>"form-control"}
+                            {label amount}
+                            {input amount  class=>"form-control"}
+                            <br>
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input submit  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal {
+        float: right;
+        padding-top: 5px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog {
+        min-width: 400px;
+    }
+
+    .modal-body {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    var $modal = $('#addReservationForm');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+        $(location).attr('href', '/actions/planned/?id={$action_id|noescape}&do=edit#tab-4');
+    });
+
+    var $part_no = $('#frm-reservationForm-part_id');
+    $part_no.on('change', function()
+    {
+        $.post("./?do=refreshQty",
+            {
+                part_id: $part_no.val()
+            },
+            function(data){
+                max_value = data[0].available;
+                if (max_value < 1) { $('#frm-reservationForm-amount').prop('disabled', true);
+                                     $('#frm-reservationForm-amount').val(0);
+                                    }
+                              else { $('#frm-reservationForm-amount').prop('disabled', false);}
+                $('#frm-reservationForm-amount').attr({'max':max_value});
+            });
+    })
+    $('#frm-reservationForm-amount').attr({'min':1});
+    $().ready(function(){
+        $.post("./?do=refreshQty",
+            {
+                part_id: $part_no.val()
+            },
+            function(data){
+                max_value = data[0].available;
+                if (max_value < 1) { $('#frm-reservationForm-amount').prop('disabled', true);
+                                     $('#frm-reservationForm-amount').val(0);
+                                    }
+                else { $('#frm-reservationForm-amount').prop('disabled', false);}
+                $('#frm-reservationForm-amount').attr({'max':max_value});
+            });
+    });
+</script>

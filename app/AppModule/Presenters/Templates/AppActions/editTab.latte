@@ -1,0 +1,185 @@
+<style>
+    .tab {
+        height: 700px !important;
+    }
+
+    .tab-content_form {
+        min-height: 540px;
+    }
+</style>
+
+<div class="modal fade" id="actionDetailFormModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_edit_action}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="wrapper">
+                        <div class="tabs">
+                            <div class="tab">
+                                <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+                                <label for="tab-1" class="tab-label">{_action}</label>
+                                <div class="tab-content_form">
+                                    <div class="animate form">
+                                        {form actionFormModal}
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {label name}
+                                                    {input name class=>"form-control"}
+                                                    {label motto}
+                                                    {input motto class=>"form-control"}
+                                                    {label starttime}
+                                                    {input starttime class=>"form-control"}
+                                                    {label stoptime}
+                                                    {input stoptime class=>"form-control"}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {label limit}
+                                                    {input limit class=>"form-control"}
+                                                    {label agefrom}
+                                                    {input agefrom class=>"form-control"}
+                                                    {label ageto}
+                                                    {input ageto class=>"form-control"}
+                                                    {if $waiting_list == 1}
+                                                        <div style="height: 25px"></div>
+                                                        {label waiting_list}
+                                                        {input waiting_list class=>"form-control"}
+                                                    {/if}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                     {label description}
+                                                     {input description class=>"form-control"}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            {input id}
+                                        {/form}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+                                <label for="tab-2" class="tab-label">{_stuffs}</label>
+                                <div class="tab-content_form">
+                                    <div style="float:right">
+                                        <a n:href="addStuff! $id" class="btn btn-success btn-flat btn-sm">
+                                            <i class="fa fa-solid fa-user-plus"></i> {_addStuff}
+                                        </a>
+                                    </div>
+                                    {snippet stuffsGrid}
+                                        {control stuffsGrid}
+                                    {/snippet}
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+                                <label for="tab-3" class="tab-label">{_documents}</label>
+                                <div class="tab-content_form">
+                                    <div style="float:right">
+                                        <a n:href="addActionDocument! $id" class="btn btn-success btn-flat btn-sm">
+                                            <i class="fa fa-file-pdf"></i> {_addDocument}
+                                        </a>
+                                    </div>
+                                    {snippet actionDocumentsGrid}
+                                        {control actionDocumentsGrid}
+                                    {/snippet}
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <input type="radio" name="css-tabs" id="tab-4" class="tab-switch">
+                                <label for="tab-4" class="tab-label">{_reservation}</label>
+                                <div class="tab-content_form">
+                                    <div style="float:right">
+                                        <a n:href="addReservation! $id" class="btn btn-success btn-flat btn-sm">
+                                            <i class="fa fa-solid circle-exclamation-check"></i> {_addReservedItem}
+                                        </a>
+                                    </div>
+                                    {snippet reservedPartsGrid}
+                                        {control reservedPartsGrid}
+                                    {/snippet}
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <input type="radio" name="css-tabs" id="tab-5" class="tab-switch">
+                                <label for="tab-5" class="tab-label">{_participants}</label>
+                                <div class="tab-content_form">
+                                    <div style="float:right">
+                                        <a n:href="addParticipant! $id" class="btn btn-success btn-flat btn-sm">
+                                            <i class="fa fa-solid fa-circle-exclamation-check"></i> {_addParticipant}
+                                        </a>
+                                    </div>
+                                    {snippet actionAllowParticipantsGrid}
+                                        {control actionAllowParticipantsGrid}
+                                    {/snippet}
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <input type="radio" name="css-tabs" id="tab-6" class="tab-switch">
+                                <label for="tab-6" class="tab-label">{_stuffStucture}</label>
+                                <div class="tab-content_form">
+                                    <div style="float:right">
+                                        <a n:href="addStuffType! $id" class="btn btn-success btn-flat btn-sm">
+                                            <i class="fa fa-solid fa-circle-exclamation-check"></i> {_addStuffRole}
+                                        </a>
+                                    </div>
+                                    {snippet actionStuffStructureGrid}
+                                        {control actionStuffStructureGrid}
+                                    {/snippet}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div style="position: absolute; bottom: 2px; width: 100%">
+                    <div class="alignright">
+                        <a id="cancel" class="btn btn-warning">{_btn_write}</a>
+                        <a id="submit" class="btn btn-success">{_btn_cancel}</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-close-modal {
+            float: right;
+            padding-top: 5px;
+        }
+
+        .card-title {
+            padding-left: 10px;
+        }
+
+        .modal-dialog {
+            min-width: 900px;
+        }
+
+        .modal-body {
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+    </style>
+
+    <script>
+        let $modal = $('#actionDetailFormModal');
+        $modal.modal('show');
+        $('#cancel').on('click', function () {
+            $modal.modal('hide');
+        });
+
+        $('#submit').on('click', function () {
+            $('#frm-actionFormModal').submit();
+        });
+
+        if ($(location).attr('hash') != '') {
+            $('#' + $(location).attr('hash').substring(1)).prop('checked', true);
+        }
+    </script>

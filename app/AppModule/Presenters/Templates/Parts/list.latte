@@ -1,0 +1,57 @@
+{block content}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>{_parts}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-12">
+                    <div style="float:right">
+                        <a n:href="addPart!" class="btn btn-success btn-flat btn-sm">
+                            <i class="fa fa-solid fa-people-simple"></i> {_addPart}
+                        </a>
+                    </div>
+                </div>
+                {snippet partsGrid}
+                    {control partsGrid}
+                {/snippet}
+            </div>
+        </div>
+    </div>
+</div>
+
+{snippet modals}
+    {ifset $modalTemplate}
+        {include $modalTemplate}
+    {/ifset}
+{/snippet}
+
+<style>
+    .col-part_no {
+        max-width: 50px;
+    }
+
+    .col-description {
+        max-width: 950px;
+    }
+
+    .col-price {
+        max-width: 50px;
+    }
+
+    .col-warehouse {
+        max-width: 50px;
+    }
+
+    .col-qty {
+        max-width: 50px;
+    }
+
+    .col-qty_available {
+        max-width: 50px;
+    }
+
+</style>

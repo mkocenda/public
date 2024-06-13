@@ -1,0 +1,18 @@
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="x_panel tile overflow_hidden">
+		<div class="x_title">
+			<h2>{_stuffs} - {_birthdays}</h2>
+			<div class="clearfix"></div>
+		</div>
+		<div class="x_content">
+			<table style="width:100%">
+				{foreach $stuffs_birthday as $stuff_birthday}
+					<tr><td><i class="fa fa-birthday-cake"></i></td>
+						<td class="col-md-10">{$stuff_birthday->surname} {$stuff_birthday->name} / {$stuff_birthday->age} </td>
+						<td class="col-md-4">{$stuff_birthday->calendar_date} </td>
+					</tr>
+				{/foreach}
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<div class="modal fade" id="addInjuryParticipantModal">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_injury}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="animate form">
+                            {form addInjuryFormModal}
+                                {label description}
+                                {input description class=>"form-control"}
+                                {label file}
+                                {input file class=>"form-control"}
+                                {input participant_id}
+                                {input action_id}
+                                <br>
+                                <div class="alignright">
+                                    {input cancel  class=>"btn btn-warning"}
+                                    {input submit  class=>"btn btn-success"}
+                                </div>
+                            {/form}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog {
+        min-width: 900px;
+    }
+
+    .modal-body {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    var $modal = $('#addInjuryParticipantModal');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+        var $url;
+        {if $action_status == 1}
+        $url = 'planned';
+        {/if}
+        {if $action_status == 2}
+        $url = 'running';
+        {/if}
+        {if $action_status == 3}
+        $url = 'done';
+        {/if}
+        $(location).attr('href', '/logs/' + $url + '/list/?id={$participant_id|noescape}&action_id={$action_id|noescape}&do=injury');
+    });
+</script>

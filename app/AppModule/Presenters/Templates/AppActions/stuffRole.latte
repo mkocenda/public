@@ -1,0 +1,53 @@
+<div class="modal fade" id="stuffTypeFormModal">
+    <div class="modal-dialog" style="min-width: 400px;">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_stuffType}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <div class="animate form">
+                        {form stuffTypeFormModal}
+                            {label stuff_id}
+                            {input stuff_id class=>"form-control"}
+                            {label certtype}
+                            {input certtype class=>"form-control"}
+                            {input id}
+                            <br>
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input submit  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-close-modal {
+            float: right;
+            padding-top: 5px;
+        }
+
+        .card-title {
+            padding-left: 10px;
+        }
+
+        .modal-body{
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+    </style>
+
+    <script>
+        var $modal = $('#stuffTypeFormModal');
+        $modal.modal('show');
+        $('[name="cancel"]').on('click', function () {
+            $modal.modal('hide');
+        });
+
+    </script>

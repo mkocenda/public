@@ -1,0 +1,69 @@
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="x_panel tile overflow_hidden">
+		<div class="x_title">
+			<h2>{_stuffs} - {_certificates}</h2>
+			<div class="clearfix"></div>
+		</div>
+		<div class="x_content">
+			<table style="width:100%">
+				<tr>
+					<td><canvas class="stuffsDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas></td>
+					<td>
+						<table class="tile_info">
+							{foreach $certificates as $certificate}
+								<tr>
+									<td><p><i class="fa {$certificate->icon}" style="color:{$certificate->backgroundcolor|noescape}"></i>{$certificate->name}</p></td>
+									<td>{$certificate->count}</td>
+								</tr>
+							{/foreach}
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+    function init_chart_doughnut(object, labels, data, bgcolors){
+
+        if( typeof (Chart) === 'undefined'){ return; }
+        if ($(object).length){
+            var chart_doughnut_settings = {
+                type: 'doughnut',
+                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: bgcolors,
+                        hoverBackgroundColor: bgcolors
+                    }]
+                },
+                options: {
+                    legend: false,
+                    responsive: false
+                }
+            }
+            $(object).each(function(){
+                var chart_element = $(this);
+                var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+
+            });
+        }
+    }
+
+    $(document).ready(function() {
+        var labels = [];
+        var data = [];
+        var bgcolor = [];
+
+		{foreach $certificates as $certificate}
+        labels.push({$certificate->name});
+        data.push({$certificate->count});
+        bgcolor.push({$certificate->backgroundcolor});
+		{/foreach}
+
+        init_chart_doughnut('.stuffsDoughnut', labels, data, bgcolor);
+    })
+</script>

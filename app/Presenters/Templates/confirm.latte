@@ -1,0 +1,57 @@
+<div class="modal fade" id="confirmForm">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+            <div class="row">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="col-md-12"><h1 class="card-title pull-center">{_confirm}</h1></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal-body">
+                    <h3>{$confirm_text}</h3>
+
+                    <div class="animate form">
+                        {form confirmForm}
+                            {input id}
+                            {input confirm_action}
+                            <div class="alignright">
+                                {input cancel  class=>"btn btn-warning"}
+                                {input confirm  class=>"btn btn-success"}
+                            </div>
+                        {/form}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-close-modal {
+        float: right;
+        padding-top: 5px;
+    }
+
+    .card-title {
+        padding-left: 10px;
+    }
+
+    .modal-dialog{
+        min-width: 510px;
+    }
+    .modal-body{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+</style>
+
+<script>
+    var $modal = $('#confirmForm');
+    $modal.modal('show');
+    $('[name="cancel"]').on('click', function () {
+        $modal.modal('hide');
+        {if ($backUrl)}
+            $(location).attr('href', {$backUrl});
+        {/if}
+    });
+
+</script>
